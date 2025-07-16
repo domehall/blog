@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 手绘（板绘）作品
+title: Paintings
 date: 2024-06-14
 author: domehall
 tags: [Painting]
@@ -9,7 +9,7 @@ toc: false
 pinned: false
 ---
 
-以前画过的东西，大多数是 work in progress（没画完）。
+以前画过的东西，大多数是 work in progress。
 
 <!-- more -->
 

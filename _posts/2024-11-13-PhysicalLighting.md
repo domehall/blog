@@ -36,7 +36,11 @@ pinned: false
 
 **光比**：被摄物体向光面和背光面的亮度比值；或者，主光灯和补光灯的强度比值
 
+![光比示例](https://www.audiobuzz.com/wp-content/uploads/2019/05/graphic-23xy63m.jpg){:height="75%" width="75%"}
+
 **曝光**：
+
+![Exposure](https://www.djkn.kemenkeu.go.id/files/images/2021/06/Exposure+Triangle1.jpg){:height="50%" width="50%"}![Exposure Value](https://s3.amazonaws.com/cdn.freshdesk.com/data/helpdesk/attachments/production/9037532230/original/iA7xVCKGelqKHHg33QYYlN7nk0CW8ES7Jg.JPG?1507708358){:height="40%" width="40%"}
 
   - EV = Exposure Value：代表摄像机的快门速度和光圈（F 数）的组合值
 
@@ -45,6 +49,8 @@ pinned: false
 - EV100：使用 ISO = 100 胶片时的 EV
 
 **中灰**：sRGB 119（0.46），sRGB Linear 0.18（反射率 18%）
+
+![Grey Card](https://physicallybased.info/images/renders/cycles/600/gray-card.avif){:height="25%" width="25%"}
 
 校准曝光：使用中灰材质的板子（灰板），使灰板面向光源，相机测光点对准灰板，调整曝光，使得中灰材质在相机图像内为中灰亮度
 
@@ -117,13 +123,20 @@ EV100"影响打光时的感官判断
 
 可以在视口里设置，也可以直接在后期盒子里固定
 
+![视口视图设置EV100](https://d1iv7db44yhgxn.cloudfront.net/documentation/images/69ebf8e2-b477-4fc1-8cc1-e1dfa97fe6d7/override_levelviewport.png){:height="50%" width="50%"}
+
 ## 3.3 确定光源
 
 ### 3.3.1 如何在引擎内测光
 
-高强度利用 showflag 中的 HDR (Eye Adaptation) 视图
+高强度利用 showflag 中的 HDR (Eye Adaptation) 视图，打开方式：视口左上角 Show > Visualize > HDR（Eye Adaptation）
 
-1）测**照度**：
+![HDR (Eye Adaptation) 视图](https://d1iv7db44yhgxn.cloudfront.net/documentation/images/0120b338-30ea-4949-84b5-c78a66a2d85d/hdr_vismode.png)
+1. 各种值列表
+2. 照度计和亮度计（其中照度计只在UE5之后有）
+3. 直方图、代表曝光取值的竖线、映射曲线
+
+测照度:
 
 1.  在场景中放置一个面朝定向光的面片作为测光板，测光板的材质：Basecolor= 1（纯白色），Metal = 0，Specular = 0，Rough = 1（全漫反射）
 
@@ -131,7 +144,7 @@ EV100"影响打光时的感官判断
 
 - 注：测照度时要注意周围场景的开阔程度影响
 
-2）测**光比**：
+测光比:
 
 1.  在场景中放置一个面片和一个圆柱体（一般用全漫反射中灰材质），放置于定向光直射下
 
@@ -262,8 +275,16 @@ UE 官方文档 [SkyAtmosphere](https://dev.epicgames.com/documentation/zh-cn/u
 - [关于建立资产统一审查预览环境的一些说明 - Unreal Engine](https://www.unrealengine.com/zh-CN/tech-blog/a-few-tips-for-building-unified-assets-reviewing-enviroment)
 - [The Challenges of Rendering an Open World in Far Cry 5](https://advances.realtimerendering.com/s2018/The%20Challenges%20of%20Rendering%20an%20Open%20World%20in%20Far%20Cry%205%20(With%20Notes).pdf)
 - [Moving Frostbite to Physically Based Rendering 3.0](https://seblagarde.files.wordpress.com/2015/07/course_notes_moving_frostbite_to_pbr_v32.pdf)
+
+摄影圈知识
+
 - [What are LV and EV (kenrockwell.com)](https://www.kenrockwell.com/tech/ev.htm)
-- [使用虚幻引擎中的物理光照单位 虚幻引擎 5.4 文档 ](https://dev.epicgames.com/documentation/zh-cn/unreal-engine/using-physical-lighting-units-in-unreal-engine)
+
+UE相关文档
+
+- [使用虚幻引擎中的物理光照单位](https://dev.epicgames.com/documentation/zh-cn/unreal-engine/using-physical-lighting-units-in-unreal-engine)
+- [天空大气](https://dev.epicgames.com/documentation/zh-cn/unreal-engine/sky-atmosphere?application_version=4.27)
+- [Auto Exposure](https://dev.epicgames.com/documentation/en-us/unreal-engine/auto-exposure-in-unreal-engine?application_version=5.4)
 
 数据参考
 

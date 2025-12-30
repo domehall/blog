@@ -30,7 +30,7 @@ pinned: false
 
 本次讨论重点在于
 - 亮度（Luminance）：一个着色点朝一个方向（朝屏幕像素点的方向）出射的光线有多强
-- 照度（Illuminance）：一个着色点在切平面上半球中所有方向收到的所有光线有多强
+- 照度（Illuminance）：一个着色点在法线半球的所有方向收到的所有光线有多强
 
 ## 1.2 摄影学
 
@@ -102,7 +102,7 @@ pinned: false
 
 3.  **恢复到自动曝光并调整自动曝光**，比如调整曝光补偿曲线，以达到符合人眼感知的结果而不是相机自动曝光结果；视情况**调整其他后期参数**，如白平衡等
 
-    - 这一步算视觉调整，并不影响灯光环境本身的真实物理性，"摄影创作中没有正确只有合适"
+    - 这一步算视觉调整，并不影响灯光环境本身的真实物理性，“摄影创作中没有正确只有合适”
 
 ## 3.1 引擎设置
 
@@ -133,7 +133,7 @@ EV100"影响打光时的感官判断
 
 2）测**光比**：
 
-1.  在场景中放置一个面片和一个圆柱体（一般用全漫反射中灰材质），如图所示，放置于定向光直射下
+1.  在场景中放置一个面片和一个圆柱体（一般用全漫反射中灰材质），放置于定向光直射下
 
 2.  在 HDR (Eye Adaption) 中观察这个装置的亮面和暗面的 Luminance，二者比值即为光比（并不严格）
 
@@ -195,7 +195,7 @@ UE 官方文档 [SkyAtmosphere](https://dev.epicgames.com/documentation/zh-cn/u
 
 最终室内照度在合理范围内即可（测照度的点在人高度附近）
 
-## 4. 调整相机后期
+## 3.4 调整相机后期
 
 1. 恢复到自动曝光
    - 相机自动曝光算法是把所有场景都自动调节成中灰亮度，在场景过暗或过亮时会出现不符合人眼视觉经验的结果（该暗的时候没有暗下去，该亮的时候没有感觉很亮），所以在自动曝光的基础上我们还需要继续调整
@@ -220,7 +220,7 @@ UE 官方文档 [SkyAtmosphere](https://dev.epicgames.com/documentation/zh-cn/u
 
 # Tips
 
-## 1. 绝对亮度其实没那么重要
+## 绝对亮度其实没那么重要
 
 Q：为什么大部分项目都可以不采用这套真实物理的光照数值？
 
@@ -238,15 +238,9 @@ A：光的强度数值可以随 EV100 一起缩放而保持视觉效果不变（
 
 - （个人感觉）宽曝光范围下的高光比场景给人眼的视觉感受更强烈（亮部有过曝感）
 
-## 2. 不想用网络参考数据来回调整，想用实景拍摄结果去 match？
+## 不想用网络参考数据来回调整，想用实景拍摄结果去 match？
 
-一个更深入的话题……
-
-在这里放一篇笔记：[Enabling a Look Development Workflow for UE4 \|
-Unreal Fest Europe 2019 \| Unreal Engine
-(youtube.com)](https://discreet-sandal-328.notion.site/Enabling-a-Look-Development-Workflow-for-UE4-Unreal-Fest-Europe-2019-Unreal-Engine-youtube-com-11038356a5fe802c977fd5a626c562dc)
-
-内容包括：前期工具准备、拍摄布景、图像处理、UE 内虚拟环境匹配拍摄结果
+一个更深入的话题……在这里放一篇笔记：[Enabling a Look Development Workflow for UE4](https://discreet-sandal-328.notion.site/Enabling-a-Look-Development-Workflow-for-UE4-Unreal-Fest-Europe-2019-Unreal-Engine-youtube-com-11038356a5fe802c977fd5a626c562dc)，内容包括：前期工具准备、拍摄布景、图像处理、UE 内虚拟环境匹配拍摄结果
 
 # 问题记录
 

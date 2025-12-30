@@ -139,7 +139,7 @@ EV100"影响打光时的感官判断
 
 ### 3.3.2 确定光照方案
 
-根据 UE 的天空大气计算和 skylight 捕捉范围，我们可以遵循这样的思考流程来确定自然光照方案（人造光方案见 3.3.5 节）：
+根据 UE 的天空大气计算和 skylight 捕捉范围，我们可以遵循这样的思考流程来确定**自然光照方案**（人造光方案见 3.3.5 节）：
 
 ![UE 自然光光照方案](../images/post_attachments/ue_natural_lighting.png)
 
@@ -178,7 +178,7 @@ EV100"影响打光时的感官判断
 - 很充足，推荐定向光不作为大气太阳光，更可控（仅对于制作 LookDev 而言，实际引擎中有一部分功能和大气光有关，还是得用）
 - 不充足，就只能让定向光作为大气太阳光，依靠天空大气组件的计算决定色温等
 
-UE 官方文档 [SkyAtmosphere](https://dev.epicgames.com/documentation/zh-cn/unreal-engine/sky-atmosphere-component-in-unreal-engine?application_version=5.4#additionalinformation) 的、"其他注意事项、"部分给出了日光、月光和大气设定的建议，可参考
+UE 官方文档 [SkyAtmosphere](https://dev.epicgames.com/documentation/zh-cn/unreal-engine/sky-atmosphere-component-in-unreal-engine?application_version=5.4#additionalinformation) 的“其他注意事项”部分给出了日光、月光和大气设定的建议，可参考
 
 ### 3.3.5 人造光源（Local Light）
 
@@ -216,15 +216,13 @@ UE 官方文档 [SkyAtmosphere](https://dev.epicgames.com/documentation/zh-cn/u
 - 比如，在开启全局光照的情况下，室外正午晴天，室内无光源，视点位于室内，用未调整的自动曝光的相机观察室内场景，会感觉太亮——这并不是光照出问题，是曝光出问题
 - 所以前期打光时固定曝光很重要，不要被自动曝光欺骗 （・∀・）
 
-对于 LookDev，出于资产检查的需求，还是需要固定曝光，不能让 EV100 的值有变化
+对于 LookDev，出于资产检查的需求，还是需要固定曝光，不能让 EV100 的值有变化而掩盖掉材质本身明度的问题
 
 # Tips
 
-## 绝对亮度其实没那么重要
+## 为什么大部分项目都可以不采用这套真实物理的光照数值？
 
-Q：为什么大部分项目都可以不采用这套真实物理的光照数值？
-
-A：光的强度数值可以随 EV100 一起缩放而保持视觉效果不变（不考虑雾效等额外的亮度）
+光的强度数值可以随 EV100 一起缩放而保持视觉效果不变（不考虑雾效等额外的亮度）
 
 - 缩放规律：EV100 + 1，光强 * 2
 
@@ -232,15 +230,19 @@ A：光的强度数值可以随 EV100 一起缩放而保持视觉效果不变（
 
 对于一般打光流程，只要能保证先固定 EV100（随便固定成哪个值，一般取 EV100=0）然后再打光（根据视觉感受调整光照数值），再调整自动曝光，也是能达到视觉上合理的光照的
 
-只是使用真实物理光照数值有一些好处：
+只是，使用这套真实物理的光照环境/规则，有一些好处：
 
 - 对相机和画面的调整可以直接沿用摄影圈经验
 
-- （个人感觉）宽曝光范围下的高光比场景给人眼的视觉感受更强烈（亮部有过曝感）
+- 退一步讲，在**宽曝光范围**的规则下打光，你会收获：高对比、长影调、过曝感、强烈视觉感受
+  - 比如，室内打光时固定 EV100=7，而室外打光时固定 EV100=12，最终效果是室内外有足够高的对比，从暗的室内看亮的室外会有很强烈的视觉感受，亮部有过曝感
+  - 在这样的打光过程中，我们不知不觉地就为一些视角下的画面（比如从室内看室外）打造了一个很宽的直方图，影调足够长，所以视觉感受足够强烈
+  - 但这也要从项目需求出发，比如多人射击 pvp 项目一般不会允许室内外对比太强烈
+  - （如果你加入了一个已经开始很久了的项目，发现灯光师和灯光 TA 对于各种天气、时段、区域的 EV100 值完全没有规定，那得好好思考一下为什么会这样了）
 
 ## 不想用网络参考数据来回调整，想用实景拍摄结果去 match？
 
-一个更深入的话题……在这里放一篇笔记：[Enabling a Look Development Workflow for UE4](https://discreet-sandal-328.notion.site/Enabling-a-Look-Development-Workflow-for-UE4-Unreal-Fest-Europe-2019-Unreal-Engine-youtube-com-11038356a5fe802c977fd5a626c562dc)，内容包括：前期工具准备、拍摄布景、图像处理、UE 内虚拟环境匹配拍摄结果
+一个更深入的话题……在这里放一篇 notion 笔记：[Enabling a Look Development Workflow for UE4](https://discreet-sandal-328.notion.site/Enabling-a-Look-Development-Workflow-for-UE4-Unreal-Fest-Europe-2019-Unreal-Engine-youtube-com-11038356a5fe802c977fd5a626c562dc)，内容包括：前期工具准备、拍摄布景、图像处理、UE 内虚拟环境匹配拍摄结果
 
 # 问题记录
 

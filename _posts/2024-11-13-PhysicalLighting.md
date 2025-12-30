@@ -60,16 +60,21 @@ pinned: false
 
 ## 1.3 人眼视觉
 
-**浦肯野效应**：从昼视觉向夜视觉转变时，人眼对光的最大敏感性向高频（蓝光）方向移动，此时场景中的蓝色部分在人眼视觉中更明亮（因为是视觉改变而不是环境改变，所以相对严谨的模拟方式是通过相机后期来模拟，如将色彩平衡调整为偏蓝）
+- **浦肯野效应**：从昼视觉向夜视觉转变时，人眼对光的最大敏感性向高频（蓝光）方向移动，此时场景中的蓝色部分在人眼视觉中更明亮
+  - 因为是视觉改变而不是环境改变，所以相对严谨的模拟方式是通过相机后期来模拟，比如将色彩平衡调整为偏蓝
+
+![浦肯野效应](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgahk5gRz5Ca3wQLUu_SK0BfnxBuy5Dci3KAcrcUWZBGiU1lhA8p2TYqr_vXFBpvlsbWc-5bjiUVWfMxeFaLRhAx5dGwE8GZF2gePumj18PtvKtA1_Qjs8VGWXynbz7j6_ERAueoXGXGSrI/s640/Purkinje+efect.jpg)
+
+- 和自动曝光范围很大的相机不同，**人眼的亮度适应区间相对较窄**，不会把任何亮度的场景都适应到中灰亮度
 
 # 2 真实世界的数据
 
-- 来源见【参考】节
-- 可根据实际情况调整，真实测量数据作只为基准参考
+- 来源见文末“参考”一节
+- 这些都是网络上获取的真实测量数据，只建议作为基准参考，不需要严格对标
 
 ##  2.1 照度、EV100 和光比
 
-- 经验 EV100：仅代表对应场景在此 EV100 下看着舒服，不代表自动曝光值
+- 经验 EV100：仅代表对应场景在此 EV100 下看着舒服（符合人眼），不代表自动曝光值
 - 光比：随氛围变化，可视为范围内最值
 
 | 场景 | 测光板的照度（lux） | 经验 EV1OO | 光比 |
@@ -123,7 +128,7 @@ EV100"影响打光时的感官判断
 
 可以在视口里设置，也可以直接在后期盒子里固定
 
-![视口视图设置EV100](https://d1iv7db44yhgxn.cloudfront.net/documentation/images/69ebf8e2-b477-4fc1-8cc1-e1dfa97fe6d7/override_levelviewport.png){:height="50%" width="50%"}
+![视口视图设置 EV100](https://d1iv7db44yhgxn.cloudfront.net/documentation/images/69ebf8e2-b477-4fc1-8cc1-e1dfa97fe6d7/override_levelviewport.png){:height="50%" width="50%"}
 
 ## 3.3 确定光源
 
@@ -133,19 +138,17 @@ EV100"影响打光时的感官判断
 
 ![HDR (Eye Adaptation) 视图](https://d1iv7db44yhgxn.cloudfront.net/documentation/images/0120b338-30ea-4949-84b5-c78a66a2d85d/hdr_vismode.png)
 1. 各种值列表
-2. 照度计和亮度计（其中照度计只在UE5之后有）
+2. 照度计和亮度计（其中照度计只在 UE5 之后有）
 3. 直方图、代表曝光取值的竖线、映射曲线
 
-测照度:
-
+测照度：
 1.  在场景中放置一个面朝定向光的面片作为测光板，测光板的材质：Basecolor= 1（纯白色），Metal = 0，Specular = 0，Rough = 1（全漫反射）
 
 2.  打开 HDR 视图，观察测光板上的 Illuminance（上方第一个探针的值），该值代表当前整个法线半球方向对此测光点的照度，单位 Lux
 
 - 注：测照度时要注意周围场景的开阔程度影响
 
-测光比:
-
+测光比：
 1.  在场景中放置一个面片和一个圆柱体（一般用全漫反射中灰材质），放置于定向光直射下
 
 2.  在 HDR (Eye Adaption) 中观察这个装置的亮面和暗面的 Luminance，二者比值即为光比（并不严格）
@@ -223,7 +226,7 @@ UE 官方文档 [SkyAtmosphere](https://dev.epicgames.com/documentation/zh-cn/u
 一些模拟人眼视觉的例子：
  - 模拟人眼对晴天等过亮环境的感知：曝光补偿 + （即 EV100 数值 -）
    - UE 默认设置的曝光补偿 +1：讨好明亮场景下的人眼视觉效果
- - 模拟人眼对夜晚等过暗环境的感知：白平衡调低
+ - 模拟人眼对夜晚等过暗环境的感知：曝光补偿 - ，白平衡调低
 
 另外，在这里强调：**光源强度确定后，基本上所有视觉上过亮或过暗的问题都是曝光问题，不要再去调整光源强度**
 - 比如，在开启全局光照的情况下，室外正午晴天，室内无光源，视点位于室内，用未调整的自动曝光的相机观察室内场景，会感觉太亮——这并不是光照出问题，是曝光出问题
@@ -280,7 +283,7 @@ UE 官方文档 [SkyAtmosphere](https://dev.epicgames.com/documentation/zh-cn/u
 
 - [What are LV and EV (kenrockwell.com)](https://www.kenrockwell.com/tech/ev.htm)
 
-UE相关文档
+UE 相关文档
 
 - [使用虚幻引擎中的物理光照单位](https://dev.epicgames.com/documentation/zh-cn/unreal-engine/using-physical-lighting-units-in-unreal-engine)
 - [天空大气](https://dev.epicgames.com/documentation/zh-cn/unreal-engine/sky-atmosphere?application_version=4.27)
